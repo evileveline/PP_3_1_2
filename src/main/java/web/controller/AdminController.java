@@ -8,7 +8,7 @@ import web.service.RoleServiceImpl;
 import web.service.UserServiceImpl;
 
 @Controller
-@RequestMapping(value = "/admin", method= RequestMethod.POST)
+@RequestMapping(value = "/admin")
 public class AdminController {
     private final UserServiceImpl userServiceImpl;
     private final RoleServiceImpl roleServiceImpl;

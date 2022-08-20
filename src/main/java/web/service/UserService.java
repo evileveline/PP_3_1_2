@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface UserService {
     List<User> allUsers ();
-    User getUserById (long id);
+    User getUserById (Long id);
     void addUser (User user);
-    void deleteUserById (long id);
+    void deleteUserById (Long id);
     void updateUser (User user);
     User passwordCoder(User user);
 }
