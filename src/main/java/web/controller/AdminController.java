@@ -21,14 +21,14 @@ public class AdminController {
     @GetMapping
     public String adminHomePage(Model model) {
         model.addAttribute("allUsers", userServiceImpl.allUsers());
-        return "admin/home";
+        return "home";
     }
 
-    @GetMapping("admin/new")
+    @PostMapping("admin/new")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleServiceImpl.getRoleList());
-        return "admin/new";
+        return "new";
     }
 
     @PostMapping
@@ -41,7 +41,7 @@ public class AdminController {
     public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         model.addAttribute("roles", roleServiceImpl.getRoleList());
-        return "admin/edit";
+        return "edit";
     }
 
     @PatchMapping("/{id}")
