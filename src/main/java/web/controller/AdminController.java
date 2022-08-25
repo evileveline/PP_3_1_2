@@ -3,7 +3,8 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.model.User;
+
+import web.model.MyUser;
 import web.service.RoleServiceImpl;
 import web.service.UserServiceImpl;
 
@@ -26,14 +27,14 @@ public class AdminController {
 
     @PostMapping("/new")
     public String newUser(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new MyUser());
         model.addAttribute("roles", roleServiceImpl.getRoleList());
         return "new";
     }
 
     @PostMapping
-    public String create(@ModelAttribute("user") User user) {
-        userServiceImpl.addUser(user);
+    public String create(@ModelAttribute("user") MyUser myUser) {
+        userServiceImpl.addUser(myUser);
         return "redirect:/admin";
     }
 
@@ -45,8 +46,8 @@ public class AdminController {
     }
 
     @PatchMapping("{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userServiceImpl.updateUser(user);
+    public String update(@ModelAttribute("user") MyUser myUser, @PathVariable("id") int id) {
+        userServiceImpl.updateUser(myUser);
         return "redirect:/admin";
     }
 

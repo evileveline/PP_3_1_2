@@ -1,13 +1,14 @@
 package web.service;
 
-import web.model.User;
+import web.model.MyUser;
+
 import java.util.List;
 
 public interface UserService {
-    List<User> allUsers ();
-    User getUserById (int id);
-    void addUser (User user);
+    List<MyUser> allUsers ();
+    MyUser getUserById (int id);
+    void addUser (MyUser myUser);
     void deleteUserById (int id);
-    void updateUser (User user);
-    User passwordCoder(User user);
+    void updateUser (MyUser myUser);
+    MyUser passwordCoder(MyUser myUser);
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import web.model.User;
+import web.model.MyUser;
 import web.service.CustomUserDetailsService;
 import web.service.UserServiceImpl;
 
@@ -24,10 +24,10 @@ public class UserController {
 
     @GetMapping
     public String user(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int userId = user.getId();
-        user = userServiceImpl.getUserById(userId);
-        model.addAttribute("user", user);
+        MyUser myUser = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int userId = myUser.getId();
+        myUser = userServiceImpl.getUserById(userId);
+        model.addAttribute("user", myUser);
         return "user";
     }
 }

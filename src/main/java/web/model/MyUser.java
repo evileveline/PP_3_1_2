@@ -1,20 +1,18 @@
 package web.model;
 
-import com.sun.istack.NotNull;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 @Entity
 @Table(name = "users")
 
-public class User implements UserDetails {
+public class MyUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,10 +44,10 @@ public class User implements UserDetails {
 
     private List<Role> roles;
 
-    public User() {
+    public MyUser() {
     }
 
-    public User(int id, String username, String surname, Integer age, String email, String password, List<Role> roles) {
+    public MyUser(int id, String username, String surname, Integer age, String email, String password, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.surname = surname;

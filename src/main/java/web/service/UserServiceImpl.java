@@ -3,7 +3,7 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.model.User;
+import web.model.MyUser;
 import web.repository.UserRepository;
 import java.util.List;
 
@@ -20,32 +20,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User passwordCoder(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return user;
+    public MyUser passwordCoder(MyUser myUser) {
+        myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
+        return myUser;
     }
 
-    public List<User> allUsers() {
+    public List<MyUser> allUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User getUserById(int id) {
+    public MyUser getUserById(int id) {
         return userRepository.getById(id);
     }
 
-    public void addUser(User user) {
-        userRepository.save(passwordCoder(user));
+    public void addUser(MyUser myUser) {
+        userRepository.save(passwordCoder(myUser));
     }
 
     @Override
-    public void updateUser(User user) {
-        User userToBeUpdated = userRepository.getById(user.getId());
-        userToBeUpdated.setUsername(user.getUsername());
-        userToBeUpdated.setSurname(user.getSurname());
-        userToBeUpdated.setAge(user.getAge());
-        userToBeUpdated.setEmail(user.getEmail());
-        userToBeUpdated.setRoles(user.getRoles());
+    public void updateUser(MyUser myUser) {
+        MyUser myUserToBeUpdated = userRepository.getById(myUser.getId());
+        myUserToBeUpdated.setUsername(myUser.getUsername());
+        myUserToBeUpdated.setSurname(myUser.getSurname());
+        myUserToBeUpdated.setAge(myUser.getAge());
+        myUserToBeUpdated.setEmail(myUser.getEmail());
+        myUserToBeUpdated.setRoles(myUser.getRoles());
         userRepository.flush();
     }
 
