@@ -17,12 +17,14 @@
             background-color: rgba(255, 255, 240);
         }
         .buttonAdd {
+            border-width: 1px;
             background: rgba(152, 251, 152);
             position: relative;
             left: 50%;
             transform: translate(-50%, 0);
         }
         .buttonLogout {
+            border-width: 1px;
             padding: 5px;
             background-color: rgba(220, 220, 220);
         }
@@ -35,7 +37,7 @@
 </head>
 <body>
 <h1>Добавить пользователя</h1>
-<form action="#" th:method="POST" th:action="@{/templates/admin}" th:object="${user}" id="id">
+<form action="#" th:method="POST" th:action="@{/admin}" th:object="${user}" id="id">
     <table>
         <tr>
             <td>
@@ -47,6 +49,13 @@
             <td>
                 <label for="surname">Фамилия</label>
                 <input type="text" th:field="*{surname}" id="surname"/>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="age">Возраст</label>
+                <input type="text" th:field="*{age}" id="age"/>
             </td>
         </tr>
         <br>
@@ -80,6 +89,7 @@
             </td>
         </tr>
     </table>
+    <br>
 <button class="buttonLogout" onclick="window.location.href = '/logout';">Выйти</button>
 </body>
 </html>

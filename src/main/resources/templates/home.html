@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>All users</title>
     <style>
-        table th, table td, form {
+        table th, table td {
             padding: 10px 5px;
             font-family: sans-serif;
             font-size: 14px;
@@ -12,21 +12,22 @@
             border-width: 1px;
             background-color: rgba(255, 255, 240);
         }
-        button {
+        .buttonAdd {
             padding: 5px;
+            border-width: 1px;
             background: rgba(152, 251, 152);
         }
         .buttonDelete {
+            border-width: 1px;
             background: rgba(255, 99, 71);
         }
         .buttonEdit {
+            border-width: 1px;
             background: rgba(255, 226, 64);
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0);
         }
         .buttonLogout {
             padding: 5px;
+            border-width: 1px;
             background-color: rgba(220, 220, 220);
         }
     </style>
@@ -35,7 +36,7 @@
 <body>
 <br>
 <form th:method="POST" action="/admin/new">
-    <input type="submit" value="Добавить пользователя">
+    <input class="buttonAdd" type="submit" value="Добавить пользователя">
 </form>
 <br>
 <h1>Список пользователей</h1>
@@ -44,6 +45,7 @@
         <th th:width="50">ID</th>
         <th th:width="120">Имя</th>
         <th th:width="120">Фамилия</th>
+        <th th:width="120">Возраст</th>
         <th th:width="150">E-mail</th>
         <th th:width="70">Редактировать</th>
         <th th:width="70">Удалить</th>
@@ -52,14 +54,15 @@
         <td th:text="${user.getId()}">ID</td>
         <td th:utext="${user.getUsername}">Имя</a></td>
         <td th:utext="${user.getSurname}">Фамилия</td>
+        <td th:utext="${user.getAge}">Возраст</td>
         <td th:utext="${user.getEmail}">E-mail</td>
         <td>
-            <form th:method="GET" th:href="@{admin/edit/{id}(id=${user.id})}">
+            <form th:action="@{admin/edit/{id}(id=${user.id})}">
                 <input class="buttonEdit" type="submit" value="Редактировать"/>
             </form>
         </td>
         <td>
-            <form th:method="DELETE" th:href="@{admin/delete/{id}(id=${user.id})}">
+            <form th:method="DELETE" th:action="@{admin/delete/{id}(id=${user.id})}">
                 <input class="buttonDelete" type="submit" value="Удалить"/>
             </form>
         </td>

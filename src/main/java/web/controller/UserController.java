@@ -10,7 +10,7 @@ import web.service.CustomUserDetailsService;
 import web.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController {
     private final UserServiceImpl userServiceImpl;
 
@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping
     public String user(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long userId = user.getId();
+        int userId = user.getId();
         user = userServiceImpl.getUserById(userId);
         model.addAttribute("user", user);
         return "user";

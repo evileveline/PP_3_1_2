@@ -13,23 +13,26 @@
             background-color: rgba(255, 255, 240);
         }
         .buttonLogout {
+            border-width: 1px;
             padding: 5px;
             background-color: rgba(220, 220, 220);
         }
     </style>
 </head>
 <body>
-<h1 th:utext="${user.username}">Имя пользователя</h1>
+<h1>Данные пользователя</h1>
 <table border="1">
     <tr>
         <th th:width="120">ID</th>
         <th th:width="120">Имя</th>
         <th th:width="120">Фамилия</th>
+        <th th:width="120">Возраст</th>
         <th th:width="150">E-mail</th>
     </tr>
     <td th:text="${user.getId()}">ID</td>
     <td th:utext="${user.getUsername}">Имя</a></td>
     <td th:utext="${user.getSurname}">Фамилия</td>
+    <td th:utext="${user.getAge}">Возраст</td>
     <td th:utext="${user.getEmail}">E-mail</td>
 </table>
 <br>

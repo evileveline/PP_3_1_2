@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(int id) {
         return userRepository.getById(id);
     }
 
@@ -43,13 +43,14 @@ public class UserServiceImpl implements UserService {
         User userToBeUpdated = userRepository.getById(user.getId());
         userToBeUpdated.setUsername(user.getUsername());
         userToBeUpdated.setSurname(user.getSurname());
+        userToBeUpdated.setAge(user.getAge());
         userToBeUpdated.setEmail(user.getEmail());
         userToBeUpdated.setRoles(user.getRoles());
         userRepository.flush();
     }
 
     @Override
-    public void deleteUserById(Long id) {
+    public void deleteUserById(int id) {
         userRepository.deleteById(id);
     }
 }

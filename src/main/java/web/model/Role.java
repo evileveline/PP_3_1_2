@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Role implements GrantedAuthority {
 
     @Id
-    private Long id;
+    private int id;
     private String role;
 
     public Role() {}
@@ -18,11 +18,11 @@ public class Role implements GrantedAuthority {
         this.role = role;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

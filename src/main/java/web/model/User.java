@@ -1,7 +1,11 @@
 package web.model;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -13,9 +17,9 @@ import java.util.stream.Collectors;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "username")
     private String username;
@@ -23,10 +27,13 @@ public class User implements UserDetails {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Transient
@@ -42,24 +49,29 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String username, String surname, String email, String password, List<Role> roles) {
+    public User(int id, String username, String surname, Integer age, String email, String password, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.surname = surname;
+        this.age = age;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername (String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -69,6 +81,14 @@ public class User implements UserDetails {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getEmail() {
