@@ -13,7 +13,6 @@ import web.service.UserServiceImpl;
 @RequestMapping(value = "/user")
 public class UserController {
     private final UserServiceImpl userServiceImpl;
-
     private final CustomUserDetailsService customUserDetailsService;
 
 
@@ -24,9 +23,8 @@ public class UserController {
 
     @GetMapping
     public String user(Model model) {
-        MyUser myUser = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int userId = myUser.getId();
-        myUser = userServiceImpl.getUserById(userId);
+        String principalName = SecurityContextHolder.getContext().getAuthentication().getName();
+        MyUser myUser = (MyUser) customUserDetailsService.loadUserByUsername(principalName);
         model.addAttribute("user", myUser);
         return "user";
     }
